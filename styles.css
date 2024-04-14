@@ -1,0 +1,200 @@
+body,
+ul,
+li {
+    font-family: serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(253, 253, 253);
+}
+
+header {
+    background-color: rgb(199, 221, 225);
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+.titulo {
+    color: white;
+    width: 100%;
+    background-color: rgb(50, 124, 192);
+    display: inline-block;
+    height:60px;
+    padding: 2px 0px;
+    position: sticky;
+    top: 0px;
+    text-align: center;
+}
+
+.newItem {
+    
+    padding: 30px 40px;
+    color: white;
+    display: flex;
+    justify-content: center;
+
+}
+
+.find {
+    
+    padding-left: 810px
+    
+}
+
+#newInput {
+    margin: 0;
+    border: 1px solid rgb(214, 213, 213);
+    width: 25%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#newDescription {
+    margin: 0;
+    border: 1px solid rgb(214, 213, 213);
+    width: 25%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#newDueDate {
+    margin: 0;
+    border: 1px solid rgb(214, 213, 213);
+    width: 25%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#newPaymentDate {
+    margin: 0;
+    border: 1px solid rgb(214, 213, 213);
+    width: 25%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#newAmount {
+    margin: 0;
+    border: 1px solid rgb(214, 213, 213);
+    width: 25%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#newAmount {
+    margin: 0;
+    border: 1px solid rgb(214, 213, 213);
+    width: 25%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#newFine {
+    margin: 0;
+    border: 1px solid rgb(214, 213, 213);
+    width: 25%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+
+
+
+.items {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+table,
+th,
+td {
+    border: 1px solid rgb(214, 213, 213);
+    border-collapse: collapse;
+    cursor: pointer;
+    position: relative;
+    padding: 9px 8px 12px 10px;
+    font-size: 18px;
+    transition: 0.2s;
+    text-align: start;
+}
+
+table{
+    background-color: white;
+    width: 50%;
+}
+
+
+
+tr:nth-child(odd){
+    background-color: #eee;
+}
+
+th:nth-child(1){
+    width: 80%;
+}
+
+tr:hover {
+    background: rgb(200, 199, 199);
+}
+
+/* Seção pagamento */
+.addBtn {
+    padding: 9px 10px;
+    background-color: rgb(35, 32, 24);
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.findBtn {
+    background-color: rgb(35, 32, 24);
+    color: white;
+    
+}
+
+.findBtn:hover {
+    background-color: #2ab53a;
+    color: white;
+}
+
+.addBtn:hover {
+    background-color: #2ab53a;
+    color: white;
+}
+
+.items {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.rodape {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 50px;
+    margin: 0;
+    border-top: 1px solid #eee;
+    transition: all .5s;
+}
+
+.texto-rodape {
+    font-size: 92%;
+    display: block;
+    color: #777;
+    line-height: 4;
+    text-align: center;
+}
+
+
+
+
+

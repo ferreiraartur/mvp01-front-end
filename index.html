@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <title>Financial Advisor</title>
+</head>
+
+<body>
+    <!-- Cabeçalho de informações do site -->
+    <head>
+        <div class="titulo">
+            <h1>Financial Advisor</h1>
+        </div>
+    </head>
+
+    <!--Adicionar um novo pagamento-->
+    <section class="newItem">
+        <form>
+            <div>
+                <input type="text" id="newInput" placeholder="Nome Pagamento">
+                <input type="text" id="newDescription" placeholder="Descrição">
+                <input  id="newDueDate" placeholder="Data Vencimento"
+                class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')">
+            </div>
+            <br>
+            <div>
+                <input  id="newPaymentDate" placeholder="Data Pagamento" class="textbox-n"
+                type="text" onfocus="(this.type='date')" onblur="(this.type='text')" >
+                <input type="number" id="newAmount" placeholder="Valor">
+                <input type="number" id="newFine" placeholder="Multa">
+                <input type="hidden" id="newStatus" placeholder="Status">
+                 
+            </div><br>
+                <button onclick="newItem()" class="addBtn">Adicionar</button>
+                
+            
+        </form>
+    </section>
+
+    <section>
+        <form class="find">
+            <input type="text" id="findName" placeholder="Buscar por nome">
+            <button onclick="findItem()" class="findBtn">Buscar</button>
+            
+        </form>
+    </section>
+    <br>
+    <!-- Tabela de pagamentos -->
+    <section class="items">
+        <table id="myTable">
+            <tr>
+                <!--
+                <th>
+                    <input type="checkbox">
+                </th>
+                -->
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th >data_vencimento</th>
+                <th>data_pagamento</th>
+                <th>valor</th>
+                <th>valor_multa</th>
+                <th>status</th>
+                <th>Ação</th>
+            </tr>
+        </table>
+    </section>
+
+
+    <footer class="rodape">
+        <span class="texto-rodape">@2024 Financial Advisor. Todos os direitos reservados</span>
+    </footer>
+    
+    <script src="scripts.js"></script>
+</body>
+
+
+</html>
