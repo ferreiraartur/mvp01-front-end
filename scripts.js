@@ -10,7 +10,7 @@ const getList = async () => {
   })
     .then((response) => response.json())
     .then((data) => {
-      data.pagamentos.forEach(item => insertList(item.nome, item.descricao, item.data_vencimento, item.data_pagamento, item.valor, item.valor_multa, item.status))
+      data.pagamentos.forEach(item => insertList(item.id, item.nome, item.descricao, item.data_vencimento, item.data_pagamento, item.valor, item.valor_multa, item.status))
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -55,10 +55,10 @@ const getList = async () => {
     Função para remover um item na lista do servidor via requisição POST
     --------------------------------------------------------------------------------------
   */
-    const removeItem = async (nomeItem) => {
+    const removeItem = async (idItem) => {
       
 
-      let url = 'http://127.0.0.1:5000/pagamento?nome=' + nomeItem;
+      let url = 'http://127.0.0.1:5000/pagamento?id=' + idItem;
       fetch(url, {
         method: 'delete'
       })
@@ -100,11 +100,11 @@ const removeElement = () => {
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function () {
       let div = this.parentElement.parentElement;
-      const nomeItem = div.getElementsByTagName('td')[0].innerHTML
+      const idItem = div.getElementsByTagName('td')[0].innerHTML
       if (confirm("Você tem certeza?")) {
         div.remove()
         //deleteItem(nomeItem)
-        removeItem(nomeItem)
+        removeItem(idItem)
         alert("Removido!")
       }
     }
@@ -185,30 +185,6 @@ const findItemByname = async (inputName2) => {
 
   }
 
-const insertList2 = (nome, descricao, data_vencimento, data_pagamento, valor, valor_multa, status) => {
-  var item = [nome, descricao, data_vencimento, data_pagamento, valor, valor_multa, status]
-  var table = document.getElementById('myTable');
-  table.remove();
-  var row = table.insertRow();
-
-  for (var i = 0; i < item.length; i++) {
-    var cel = row.insertCell(i);
-    cel.textContent = item[i];
-  }
-  insertButton(row.insertCell(-1))
-  document.getElementById("newInput").value = "";
-  document.getElementById("newDescription").value = "";
-  document.getElementById("newDueDate").value = "";
-  document.getElementById("newPaymentDate").value = "";
-  document.getElementById("newAmount").value = "";
-  document.getElementById("newFine").value = "";
-  document.getElementById("newStatus").value = "";
-  
-  
-
-  removeElement()
-}
-
 const clearTable = () =>{
   
   var Table = document.getElementById("mytable");
@@ -223,8 +199,8 @@ const clearTable = () =>{
   Função para inserir items na lista apresentada
   --------------------------------------------------------------------------------------
 */
-const insertList = (nome, descricao, data_vencimento, data_pagamento, valor, valor_multa, status) => {
-  var item = [nome, descricao, data_vencimento, data_pagamento, valor, valor_multa, status]
+const insertList = (id, nome, descricao, data_vencimento, data_pagamento, valor, valor_multa, status) => {
+  var item = [id, nome, descricao, data_vencimento, data_pagamento, valor, valor_multa, status]
   var table = document.getElementById('myTable');
   var row = table.insertRow();
 
@@ -233,6 +209,7 @@ const insertList = (nome, descricao, data_vencimento, data_pagamento, valor, val
     cel.textContent = item[i];
   }
   insertButton(row.insertCell(-1))
+  //document.getElementById("id").value = "";
   document.getElementById("newInput").value = "";
   document.getElementById("newDescription").value = "";
   document.getElementById("newDueDate").value = "";
