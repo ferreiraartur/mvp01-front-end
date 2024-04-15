@@ -142,17 +142,17 @@ const newItem = () => {
   Função para buscar um pagamento por nome
   ------------------------------------------------------------------------------------------
 */
-const findItem = () => {
+const findItem = async () => {
   
   let inputName2 = document.getElementById("findName").value;
   console.log ("testando123",inputName2);
   if (inputName2 === '') {
     alert ("Escreva o nome do pagamento para buscar");
   }else  {
-    alert ("chegou aqui");
+    //alert ("chegou aqui");
     //clearTable();
     
-    findItemByname(inputName2);
+    await findItemByname(inputName2);
   
   
   }
@@ -165,32 +165,40 @@ const findItem = () => {
 const findItemByname = async (inputName2) => {
     console.log ("testando1234",inputName2);
     let url = 'http://127.0.0.1:5000/pagamento?nome=' + inputName2;
+    //debugger
     fetch(url, {
       method: 'get'
     })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-      return response.json();
-      })
-    //  .then((response) => response.json())
-      .then(data => {
-        console.log('Data:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      clearTable();
+     // insertList(data.id, data.nome, data.descricao, data.data_vencimento, data.data_pagamento, data.valor, data.valor_multa, data.status)
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
     
 
   }
 
 const clearTable = () =>{
   
-  var Table = document.getElementById("mytable");
-  Table.tableHead.innerHTML = '<tr></tr>'
-  
-}
+  //var table2 = document.getElementById("myTable");
+  //var tr = document.getElementsByTagName("tr");
+  //for (var i=1; i< tr.length; i++) {
+  //  table2.deleteRow(1);
+
+ // }
+
+  var fields = document.querySelectorAll("#myTable td");
+
+    fields.forEach(cell => {
+      cell.innerHTML = "";
+    });
+
+  }
+
 
 
 

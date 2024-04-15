@@ -176,7 +176,7 @@ tr:hover {
 }
 
 .rodape {
-    position: absolute;
+    position: sticky;
     left: 0;
     right: 0;
     bottom: 0;
@@ -184,6 +184,7 @@ tr:hover {
     margin: 0;
     border-top: 1px solid #eee;
     transition: all .5s;
+    
 }
 
 .texto-rodape {
