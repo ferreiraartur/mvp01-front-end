@@ -194,6 +194,50 @@ tr:hover {
     text-align: center;
 }
 
+.fancybox {
+    text-align: center;
+    color: black;
+    padding: 1em;
+    border: 0.5em solid rgb(50, 124, 192);
+    width: 6em;
+    height: 6em;
+    border-radius: 100%;
+}
+
+.box {
+    
+    display: flex;
+    padding-left: 400px;
+}
+
+
+
+.box1, .box2, .box3{
+    
+    position: relative;
+    margin: 10px;
+    float:left;
+    width: calc(25% - 10px);
+    background-color: rgb(255, 253, 253);
+    text-align: center;
+    color: black;
+    padding: 1em;
+    border: 0.5em solid rgb(50, 124, 192);
+    width: 6em;
+    height: 6em;
+    border-radius: 100%; 
+    font-family: serif;
+    font-weight: bold;
+}
+
+.valor {
+    font-family: serif;
+    font-weight: bold;
+    font-size: 20px;
+
+}
+
+
 
 
 

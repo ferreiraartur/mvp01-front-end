@@ -22,7 +22,7 @@ const getList = async () => {
     Chamada da função para carregamento inicial dos dados
     --------------------------------------------------------------------------------------
   */
-    getList()
+ getList()
 
 /*
     --------------------------------------------------------------------------------------
@@ -143,14 +143,17 @@ const newItem = () => {
   ------------------------------------------------------------------------------------------
 */
 const findItem = () => {
+  
   let inputName2 = document.getElementById("findName").value;
   console.log ("testando123",inputName2);
   if (inputName2 === '') {
     alert ("Escreva o nome do pagamento para buscar");
   }else  {
-   // clearTable();
-  findItemByname(inputName2);
-  console.log ("testando1234",inputName2);
+    alert ("chegou aqui");
+    //clearTable();
+    
+    findItemByname(inputName2);
+  
   
   }
 }
@@ -159,25 +162,33 @@ const findItem = () => {
   Função para buscar no servidor
   --------------------------------------------------------------------------------------------
 */
-const findItemByname = async (inputName) => {
-  let url = 'http://127.0.0.1:5000/pagamento?nome=' + inputName;
-  fetch(url, {
-    method: 'get',
-  })
-    .then((response) => response.json())
-    
-    .then((data) => {
-      console.log("teste",data) 
-      data.pagamentos.forEach(item => insertList2(item.nome, item.descricao, item.data_vencimento, item.data_pagamento, item.valor, item.valor_multa, item.status))
+const findItemByname = async (inputName2) => {
+    console.log ("testando1234",inputName2);
+    let url = 'http://127.0.0.1:5000/pagamento?nome=' + inputName2;
+    fetch(url, {
+      method: 'get'
     })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-}
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+      return response.json();
+      })
+    //  .then((response) => response.json())
+      .then(data => {
+        console.log('Data:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    
+
+  }
 
 const insertList2 = (nome, descricao, data_vencimento, data_pagamento, valor, valor_multa, status) => {
   var item = [nome, descricao, data_vencimento, data_pagamento, valor, valor_multa, status]
   var table = document.getElementById('myTable');
+  table.remove();
   var row = table.insertRow();
 
   for (var i = 0; i < item.length; i++) {
@@ -199,9 +210,10 @@ const insertList2 = (nome, descricao, data_vencimento, data_pagamento, valor, va
 }
 
 const clearTable = () =>{
+  
   var Table = document.getElementById("mytable");
-   Table.innerHTML = "";
-
+  Table.tableHead.innerHTML = '<tr></tr>'
+  
 }
 
 
