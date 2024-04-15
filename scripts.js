@@ -18,6 +18,44 @@ const getList = async () => {
 }
 
 /*
+  --------------------------------------------------------------------------------------
+  Função contar pagamentos em aberto do mês corrente via requisição GET
+  --------------------------------------------------------------------------------------
+*/
+
+
+const getCount = async () => {
+  let url = 'http://127.0.0.1:5000/pagamentos';
+  fetch(url, {
+    method: 'get',
+  })
+    .then((response) => response.json())
+    .then((countPag) => {
+      var j;
+      j=0;
+      for (var index = 0; index < countPag.pagamentos.length; ++index) {
+        if (countPag.pagamentos[index].descricao === 'casa'){
+          j += 1;
+        }
+        //console.log("teste",countPag.pagamentos[index].descricao);
+        
+          
+        // body of loop
+      }
+      console.log ("j",j);
+      //var c = countPag.pagamentos.length;
+      //console.log(c);
+      //data.pagamentos.forEach(item => insertList(item.id, item.nome, item.descricao, item.data_vencimento, item.data_pagamento, item.valor, item.valor_multa, item.status))
+    })
+    
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+
+getCount()
+
+/*
     --------------------------------------------------------------------------------------
     Chamada da função para carregamento inicial dos dados
     --------------------------------------------------------------------------------------
@@ -145,13 +183,11 @@ const newItem = () => {
 const findItem = async () => {
   
   let inputName2 = document.getElementById("findName").value;
-  console.log ("testando123",inputName2);
+  //console.log ("testando123",inputName2);
   if (inputName2 === '') {
     alert ("Escreva o nome do pagamento para buscar");
   }else  {
-    //alert ("chegou aqui");
-    //clearTable();
-    
+
     await findItemByname(inputName2);
   
   
@@ -163,7 +199,7 @@ const findItem = async () => {
   --------------------------------------------------------------------------------------------
 */
 const findItemByname = async (inputName2) => {
-    console.log ("testando1234",inputName2);
+    //console.log ("testando1234",inputName2);
     let url = 'http://127.0.0.1:5000/pagamento?nome=' + inputName2;
     //debugger
     fetch(url, {
