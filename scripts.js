@@ -33,17 +33,64 @@ const getCount = async () => {
     .then((countPag) => {
       var j;
       j=0;
-     // for (var index = 0; index < countPag.pagamentos.length; ++index) {
-     //   if (countPag.pagamentos[index].descricao === 'casa'){
-     //     j += 1;
-      //  }
+      var totalPgAno;
+      totalPgAno = 0;
+      var totalPgMes;
+      totalPgMes = 0
+     
       for (var index = 0; index < countPag.pagamentos.length; ++index) {
-        console.log("teste",countPag.pagamentos[index].data_vencimento);
+        //console.log("teste",countPag.pagamentos[index].data_vencimento);
+        if (countPag.pagamentos[index].status === "Aberto"){
+          j += 1;
+        }
       }
-      console.log ("j",j);
-      //var c = countPag.pagamentos.length;
-      //console.log(c);
-      //data.pagamentos.forEach(item => insertList(item.id, item.nome, item.descricao, item.data_vencimento, item.data_pagamento, item.valor, item.valor_multa, item.status))
+      document.getElementById("totalAberto").innerHTML = j;
+      //console.log ("j",j);
+
+      // Total pago ano
+      const y = new Date();
+      let year = y.getFullYear();
+      for (var index = 0; index < countPag.pagamentos.length; ++index){
+        if (countPag.pagamentos[index].status === "Quitado" &&  new Date (countPag.pagamentos[index].data_pagamento).getFullYear() === year){
+           
+          totalPgAno += countPag.pagamentos[index].valor;
+        }
+      }
+     
+      document.getElementById("totalPgAno").innerHTML = totalPgAno;
+
+      // Total pago mês
+      const d = new Date();
+      let month = d.getMonth();
+      
+      for (var index = 0; index < countPag.pagamentos.length; ++index){
+        if (countPag.pagamentos[index].status === "Quitado" &&  new Date (countPag.pagamentos[index].data_pagamento).getMonth() === month){
+          totalPgMes += countPag.pagamentos[index].valor;
+        }
+      }
+      document.getElementById("totalPgMes").innerHTML = totalPgMes;
+
+      // testes
+      var totalTeste;
+      totalTeste = 0;
+      
+      
+      //let year = d.getFullYear();
+      
+      //console.log ("year", year);
+
+      let dataTemp = new Date();
+
+      for (var index = 0; index < countPag.pagamentos.length; ++index) {
+        if (countPag.pagamentos[index].status === "Quitado" &&  new Date (countPag.pagamentos[index].data_pagamento).getMonth() === month){
+          
+          totalTeste += countPag.pagamentos[index].valor;
+          
+        }
+      }
+      console.log ("teste",totalTeste);
+
+      
     })
     
     .catch((error) => {
