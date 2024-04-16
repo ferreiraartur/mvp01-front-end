@@ -3,6 +3,7 @@
   Função para obter a lista existente do servidor via requisição GET
   --------------------------------------------------------------------------------------
 */
+const locale = 'pt-br'
 const getList = async () => {
   let url = 'http://127.0.0.1:5000/pagamentos';
   fetch(url, {
@@ -10,7 +11,7 @@ const getList = async () => {
   })
     .then((response) => response.json())
     .then((data) => {
-      data.pagamentos.forEach(item => insertList(item.id, item.nome, item.descricao, item.data_vencimento, item.data_pagamento, item.valor, item.valor_multa, item.status))
+      data.pagamentos.forEach(item => insertList(item.id, item.nome, item.descricao, (new Date (item.data_vencimento).toLocaleDateString(locale)), (new Date (item.data_pagamento).toLocaleDateString(locale)), item.valor, item.valor_multa, item.status))
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -39,13 +40,13 @@ const getCount = async () => {
       totalPgMes = 0
      
       for (var index = 0; index < countPag.pagamentos.length; ++index) {
-        //console.log("teste",countPag.pagamentos[index].data_vencimento);
+        
         if (countPag.pagamentos[index].status === "Aberto"){
           j += 1;
         }
       }
       document.getElementById("totalAberto").innerHTML = j;
-      //console.log ("j",j);
+      
 
       // Total pago ano
       const y = new Date();
@@ -69,27 +70,6 @@ const getCount = async () => {
         }
       }
       document.getElementById("totalPgMes").innerHTML = totalPgMes;
-
-      // testes
-      var totalTeste;
-      totalTeste = 0;
-      
-      
-      //let year = d.getFullYear();
-      
-      //console.log ("year", year);
-
-      let dataTemp = new Date();
-
-      for (var index = 0; index < countPag.pagamentos.length; ++index) {
-        if (countPag.pagamentos[index].status === "Quitado" &&  new Date (countPag.pagamentos[index].data_pagamento).getMonth() === month){
-          
-          totalTeste += countPag.pagamentos[index].valor;
-          
-        }
-      }
-      console.log ("teste",totalTeste);
-
       
     })
     
