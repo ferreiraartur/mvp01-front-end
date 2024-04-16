@@ -177,7 +177,7 @@ const insertButton2 = (parent) => {
   parent.appendChild(span);
 }
 
-/*
+
 const insertButton3 = (parent) => {
   let span = document.createElement("span");
   let txt = document.createTextNode("\u231B");
@@ -185,7 +185,7 @@ const insertButton3 = (parent) => {
   span.appendChild(txt);
   parent.appendChild(span);
 }
-*/
+
 
 
 
@@ -336,9 +336,25 @@ const insertList = (id, nome, descricao, data_vencimento, data_pagamento, valor,
     var cel = row.insertCell(i);
     cel.textContent = item[i];
   }
+
   insertButton(row.insertCell(-1))
-  insertButton2(row.insertCell(-1))
-  //document.getElementById("id").value = "";
+
+  if (item[7] === "Aberto"){
+    insertButton3(row.insertCell(-1))
+  }else {
+    insertButton2(row.insertCell(-1))
+
+  }
+  
+
+  //insertButton(row.insertCell(-1))
+  //
+  
+
+  //teste
+  
+  console.log ("Status Check", item[7]);
+  //
   document.getElementById("newInput").value = "";
   document.getElementById("newDescription").value = "";
   document.getElementById("newDueDate").value = "";
