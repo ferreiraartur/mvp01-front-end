@@ -119,8 +119,6 @@ getCount()
     --------------------------------------------------------------------------------------
   */
     const removeItem = async (idItem) => {
-      
-
       let url = 'http://127.0.0.1:5000/pagamento?id=' + idItem;
       fetch(url, {
         method: 'delete'
@@ -132,8 +130,22 @@ getCount()
 
     }
 
+/*
+---------------------------------------------------------------------------------------
+Função para quitar o pagamento
+---------------------------------------------------------------------------------------
+  */
+    const quitarItem = async (idItem) => {
+      let url = 'http://127.0.0.1:5000/atualizar_status_pagamento?id=' + idItem;
+      fetch(url, {
+        method: 'post'
+      })
+        .then((response) => response.json())
+        .catch((error) => {
+          console.error('Error:', error);
+        });
 
-    
+    }
 
 
 
@@ -149,7 +161,36 @@ const insertButton = (parent) => {
   span.className = "close";
   span.appendChild(txt);
   parent.appendChild(span);
+
 }
+
+/*
+  --------------------------------------------------------------------------------------
+  Função para criar um botão para quitar o pagamento da lista
+  --------------------------------------------------------------------------------------
+*/
+const insertButton2 = (parent) => {
+  let span = document.createElement("span");
+  let txt = document.createTextNode("\u2714");
+  span.className = "quitar";
+  span.appendChild(txt);
+  parent.appendChild(span);
+}
+
+/*
+const insertButton3 = (parent) => {
+  let span = document.createElement("span");
+  let txt = document.createTextNode("\u231B");
+  span.className = "quitar";
+  span.appendChild(txt);
+  parent.appendChild(span);
+}
+*/
+
+
+
+
+
 
 /*
   --------------------------------------------------------------------------------------
@@ -173,7 +214,25 @@ const removeElement = () => {
     }
   }
 }
-    
+
+const quitarPagamento = () => {
+
+  let quitar = document.getElementsByClassName("quitar");
+  
+  let i;
+  for (i = 0; i < quitar.length; i++) {
+    quitar[i].onclick = function () {
+      let div = this.parentElement.parentElement;
+      const idItem = div.getElementsByTagName('td')[0].innerHTML
+      if (confirm("Você tem certeza que deseja quitar esse pagamento?")) {
+        
+        quitarItem(idItem)
+        alert("Quitado!")
+        location.reload();
+      }
+    }
+  }
+}
 
 
 /*
@@ -278,6 +337,7 @@ const insertList = (id, nome, descricao, data_vencimento, data_pagamento, valor,
     cel.textContent = item[i];
   }
   insertButton(row.insertCell(-1))
+  insertButton2(row.insertCell(-1))
   //document.getElementById("id").value = "";
   document.getElementById("newInput").value = "";
   document.getElementById("newDescription").value = "";
@@ -290,6 +350,7 @@ const insertList = (id, nome, descricao, data_vencimento, data_pagamento, valor,
   
 
   removeElement()
+  quitarPagamento()
 }
 
 
