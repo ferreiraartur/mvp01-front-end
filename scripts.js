@@ -33,14 +33,12 @@ const getCount = async () => {
     .then((countPag) => {
       var j;
       j=0;
+     // for (var index = 0; index < countPag.pagamentos.length; ++index) {
+     //   if (countPag.pagamentos[index].descricao === 'casa'){
+     //     j += 1;
+      //  }
       for (var index = 0; index < countPag.pagamentos.length; ++index) {
-        if (countPag.pagamentos[index].descricao === 'casa'){
-          j += 1;
-        }
-        //console.log("teste",countPag.pagamentos[index].descricao);
-        
-          
-        // body of loop
+        console.log("teste",countPag.pagamentos[index].data_vencimento);
       }
       console.log ("j",j);
       //var c = countPag.pagamentos.length;
