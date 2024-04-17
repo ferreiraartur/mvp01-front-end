@@ -238,6 +238,16 @@ const newItem = () => {
     alert("Escreva o nome de um pagamento!");
   } else if (isNaN(inputAmount) || isNaN(inputFine)) {
     alert("Valor e multa precisam ser números!");
+  } else if (inputDescription === ''){
+    alert("Escreva a descrição!");
+  } else if (inputDueDate === ''){
+    alert("Informe a data de vencimento!");
+  } else if (inputPaymentDate === ''){
+    alert("Informe a data de pagamento!");
+  } else if (inputAmount === ''){
+    alert("Informe o valor!");
+  } else if (inputFine === ''){
+    alert("Informe o valor da multa!");
   } else {
     postItem(inputName, inputDescription, inputDueDate,inputPaymentDate,inputAmount,inputFine)
     alert("Item adicionado!")
