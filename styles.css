@@ -173,10 +173,11 @@ tr:hover {
     padding: 0;
     display: flex;
     justify-content: center;
+    margin: 0 0 50px 0;
 }
 
 .rodape {
-    position: sticky;
+    position: static;
     left: 0;
     right: 0;
     bottom: 0;
