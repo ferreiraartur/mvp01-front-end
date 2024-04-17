@@ -127,7 +127,6 @@ getCount()
         .catch((error) => {
           console.error('Error:', error);
         });
-
     }
 
 /*
@@ -144,10 +143,7 @@ Função para quitar o pagamento
         .catch((error) => {
           console.error('Error:', error);
         });
-
     }
-
-
 
 
 /*
@@ -187,11 +183,6 @@ const insertButton3 = (parent) => {
 }
 
 
-
-
-
-
-
 /*
   --------------------------------------------------------------------------------------
   Função para remover um item da lista de acordo com o click no botão close
@@ -199,7 +190,6 @@ const insertButton3 = (parent) => {
 */
 const removeElement = () => {
   let close = document.getElementsByClassName("close");
-  // var table = document.getElementById('myTable');
   let i;
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function () {
@@ -207,7 +197,6 @@ const removeElement = () => {
       const idItem = div.getElementsByTagName('td')[0].innerHTML
       if (confirm("Você tem certeza?")) {
         div.remove()
-        //deleteItem(nomeItem)
         removeItem(idItem)
         alert("Removido!")
       }
@@ -265,16 +254,13 @@ const newItem = () => {
   ------------------------------------------------------------------------------------------
 */
 const findItem = async () => {
-  
   let inputName2 = document.getElementById("findName").value;
-  //console.log ("testando123",inputName2);
+
   if (inputName2 === '') {
     alert ("Escreva o nome do pagamento para buscar");
   }else  {
 
     await findItemByname(inputName2);
-  
-  
   }
 }
 /*
@@ -283,9 +269,9 @@ const findItem = async () => {
   --------------------------------------------------------------------------------------------
 */
 const findItemByname = async (inputName2) => {
-    //console.log ("testando1234",inputName2);
+    
     let url = 'http://127.0.0.1:5000/pagamento?nome=' + inputName2;
-    //debugger
+    
     fetch(url, {
       method: 'get'
     })
@@ -293,7 +279,7 @@ const findItemByname = async (inputName2) => {
     .then((data) => {
       console.log(data);
       clearTable();
-     // insertList(data.id, data.nome, data.descricao, data.data_vencimento, data.data_pagamento, data.valor, data.valor_multa, data.status)
+      insertList(data.id, data.nome, data.descricao, data.data_vencimento, data.data_pagamento, data.valor, data.valor_multa, data.status)
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -303,25 +289,19 @@ const findItemByname = async (inputName2) => {
   }
 
 const clearTable = () =>{
-  
-  //var table2 = document.getElementById("myTable");
-  //var tr = document.getElementsByTagName("tr");
-  //for (var i=1; i< tr.length; i++) {
-  //  table2.deleteRow(1);
-
- // }
-
   var fields = document.querySelectorAll("#myTable td");
 
     fields.forEach(cell => {
       cell.innerHTML = "";
     });
 
+    fields.forEach(row => {
+      row.remove();
+   });
+
   }
 
-
-
-
+  
   /*
   --------------------------------------------------------------------------------------
   Função para inserir items na lista apresentada
@@ -343,18 +323,8 @@ const insertList = (id, nome, descricao, data_vencimento, data_pagamento, valor,
     insertButton3(row.insertCell(-1))
   }else {
     insertButton2(row.insertCell(-1))
-
   }
-  
 
-  //insertButton(row.insertCell(-1))
-  //
-  
-
-  //teste
-  
-  console.log ("Status Check", item[7]);
-  //
   document.getElementById("newInput").value = "";
   document.getElementById("newDescription").value = "";
   document.getElementById("newDueDate").value = "";
@@ -369,20 +339,5 @@ const insertList = (id, nome, descricao, data_vencimento, data_pagamento, valor,
   quitarPagamento()
 }
 
-
-  
-
-/* 
-----------------------------------------------------------------------------------------
-Formatar data
-----------------------------------------------------------------------------------------
-*/
-
-
-//formatação de data atual com locales
-//const novaData = new Date();
-//console.log(novaData);// data sem formatação
-//console.log(novaData.toLocaleDateString('pt-BR'));// data em português dia/mês/ano
-//console.log(novaData.toLocaleDateString('ko-KR')); //coreano ano.mês.dia.
 
 
