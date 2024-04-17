@@ -257,7 +257,7 @@ const findItem = async () => {
     alert ("Escreva o nome do pagamento para buscar");
   }else  {
 
-    await findItemByname(inputName2);
+    findItemByname(inputName2);
   }
 }
 /*
@@ -274,10 +274,14 @@ const findItemByname = async (inputName2) => {
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      if (!data.id){
+        alert ("Não encontrado!")
+      }else {
       clearTable();
       insertList(data.id, data.nome, data.descricao, data.data_vencimento, data.data_pagamento, data.valor, data.valor_multa, data.status)
+    }
     })
+    
     .catch((error) => {
       console.error('Error:', error);
     });
@@ -309,6 +313,8 @@ const insertList = (id, nome, descricao, data_vencimento, data_pagamento, valor,
   var table = document.getElementById('myTable');
   var row = table.insertRow();
 
+  
+
   for (var i = 0; i < item.length; i++) {
     var cel = row.insertCell(i);
     cel.textContent = item[i];
@@ -335,6 +341,4 @@ const insertList = (id, nome, descricao, data_vencimento, data_pagamento, valor,
   removeElement()
   quitarPagamento()
 }
-
-
 
