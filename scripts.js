@@ -27,27 +27,26 @@ const getList = async () => {
 
 const getCount = async () => {
   let url = 'http://127.0.0.1:5000/pagamentos';
+  var totalAberto;
+  totalAberto=0;
+  var totalPgAno;
+  totalPgAno = 0;
+  var totalPgMes;
+  totalPgMes = 0;
+
   fetch(url, {
     method: 'get',
   })
     .then((response) => response.json())
     .then((countPag) => {
-      var j;
-      j=0;
-      var totalPgAno;
-      totalPgAno = 0;
-      var totalPgMes;
-      totalPgMes = 0
-     
+      
       for (var index = 0; index < countPag.pagamentos.length; ++index) {
-        
         if (countPag.pagamentos[index].status === "Aberto"){
-          j += 1;
+          totalAberto += 1;
         }
       }
-      document.getElementById("totalAberto").innerHTML = j;
+      document.getElementById("totalAberto").innerHTML = totalAberto;
       
-
       // Total pago ano
       const y = new Date();
       let year = y.getFullYear();
@@ -63,7 +62,6 @@ const getCount = async () => {
       // Total pago mês
       const d = new Date();
       let month = d.getMonth();
-      
       for (var index = 0; index < countPag.pagamentos.length; ++index){
         if (countPag.pagamentos[index].status === "Quitado" &&  new Date (countPag.pagamentos[index].data_pagamento).getMonth() === month){
           totalPgMes += countPag.pagamentos[index].valor;
@@ -214,7 +212,6 @@ const quitarPagamento = () => {
       let div = this.parentElement.parentElement;
       const idItem = div.getElementsByTagName('td')[0].innerHTML
       if (confirm("Você tem certeza que deseja quitar esse pagamento?")) {
-        
         quitarItem(idItem)
         alert("Quitado!")
         location.reload();
@@ -244,7 +241,7 @@ const newItem = () => {
   } else {
     postItem(inputName, inputDescription, inputDueDate,inputPaymentDate,inputAmount,inputFine)
     alert("Item adicionado!")
-    //getList()
+    
   }
 }
 
@@ -301,7 +298,7 @@ const clearTable = () =>{
 
   }
 
-  
+
   /*
   --------------------------------------------------------------------------------------
   Função para inserir items na lista apresentada
