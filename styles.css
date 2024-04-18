@@ -152,9 +152,23 @@ tr:hover {
     border-radius: 2px;
 }
 
+.listBtn {
+    background-color: rgb(35, 32, 24);
+    color: white;
+    padding: 1px 6px 1px 6px;
+    width: 60px;
+}
+
+.listBtn:hover {
+    background-color: #2ab53a;
+    color: white;
+}
+
 .findBtn {
     background-color: rgb(35, 32, 24);
     color: white;
+    padding: 1px 6px 1px 6px;
+    width: 60px;
     
 }
 
@@ -162,6 +176,8 @@ tr:hover {
     background-color: #2ab53a;
     color: white;
 }
+
+
 
 .addBtn:hover {
     background-color: #2ab53a;
