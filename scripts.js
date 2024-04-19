@@ -223,7 +223,7 @@ const quitarPagamento = () => {
 
 /*
   --------------------------------------------------------------------------------------
-  Função para adicionar um novo item com nome, quantidade e valor 
+  Função para adicionar um novo pagamento 
   --------------------------------------------------------------------------------------
 */
 const newItem = () => {
